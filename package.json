@@ -33,7 +33,8 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "exec": "cross-env CI=true react-scripts test --env=jsdom --json",
     "eject": "react-scripts eject",
-    "submit": "codenation-jest-score ./score-map.json"
+    "submit": "codenation-jest-score ./score-map.json",
+    "heroku-postbuild": "yarn build-js"
   },
   "eslintConfig": {
     "extends": "react-app"
