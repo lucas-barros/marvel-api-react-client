@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import CharacterService from 'services/characters';
+import { getCharacters } from 'services/marvel';
 import types from './types';
 
 // Debounce
@@ -11,7 +11,8 @@ function* fetchCharacters(action) {
   try {
     yield delay(500);
 
-    const response = yield call(CharacterService.getCharacters, action.payload);
+    const response = yield call(getCharacters, action.payload);
+
     yield put({ type: types.SUCCESS, response });
   } catch (e) {
     yield put({ type: types.FAILURE, message: e.message });

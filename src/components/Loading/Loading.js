@@ -1,17 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { pxToRem } from 'styles';
 import { Loading as LoadingImg } from 'img';
-
-const Styled = styled.div`
-  width: ${pxToRem(50)};
-  margin: ${pxToRem(100)} auto;
-`;
+import { StyledLoading } from './loading.style';
 
 const Loading = () => (
-  <Styled>
+  <StyledLoading>
     <img src={LoadingImg} alt="Loading icon" />
-  </Styled>
+  </StyledLoading>
 );
 
 export default Loading;

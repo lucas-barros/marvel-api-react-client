@@ -1,20 +1,15 @@
-/* Modules */
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import Layout from './Layout';
-/* Containers */
-import App from '../containers/App/App';
-import DetailsPage from '../containers/DetailsPage/DetailsPage';
+import { Layout } from 'components';
+import { Details, Home } from 'containers';
 
-const MyRouter = () => (
+const Router = () => (
   <React.Fragment>
     <Layout>
-      <Route exact path="/" component={App} />
-      <Route exact path="/details" component={DetailsPage} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/details" component={Details} />
     </Layout>
   </React.Fragment>
 );
 
-export default withRouter(connect()(MyRouter));
+export default Router;

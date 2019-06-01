@@ -1,45 +1,27 @@
-/* eslint-disable */
-/* IE */
-import 'core-js/es6/map'; // for IE old browsers
-import 'core-js/es6/set'; // for IE old browsers
-import 'raf/polyfill'; // for IE old browsers
-import 'babel-polyfill'; // for IE old browsers
-
-/* Modules */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './services/registerServiceWorker';
 
-// redux
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga'; // SAGA
+import { BrowserRouter } from 'react-router-dom';
+
+import createSagaMiddleware from 'redux-saga';
 import rootReducers from './redux/rootReducers';
 import rootSagas from './redux/rootSagas';
 
-// Router
-import MyRouter from './router/router';
-import { HashRouter } from 'react-router-dom';
+import Router from './router/router';
 
-// Styles
-import { GlobalStyle } from 'styles';
-
-// create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducers, {}, composeEnhancers(applyMiddleware(sagaMiddleware)));
+const store = createStore(rootReducers, {}, applyMiddleware(sagaMiddleware));
 
-// run the saga
 sagaMiddleware.run(rootSagas);
 
 ReactDOM.render(
   <Provider store={store}>
-    <HashRouter>
-      <MyRouter />
-    </HashRouter>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
-
-registerServiceWorker();
