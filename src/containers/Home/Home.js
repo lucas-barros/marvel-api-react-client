@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 import { getCharacters } from 'redux/characters/actions';
@@ -14,26 +14,27 @@ const Home = ({ getCharacters, characters, loading, pageInfo, name }) => {
   useEffect(() => {
     if (!mounted.current && characters.length === 0) {
       mounted.current = true;
-      getCharacters({ name: localName }); 
-    } 
-    else if (!mounted.current && characters.length > 0) {
-      mounted.current = true;      
-    } 
-    else {
+      getCharacters({ name: localName });
+    } else if (!mounted.current && characters.length > 0) {
+      mounted.current = true;
+    } else {
       getCharacters({ name: localName });
     }
   }, [localName]);
 
   return (
-    <InfiniteScroll
-      pageStart={0}
-      loadMore={() => getCharacters({ name: localName, offset: offset + limit * 1 })}
-      hasMore={characters.length && hasMore}
-      loader={<Loading />}
-    >
+    <Fragment>
       <Search value={localName} onChange={e => setLocalName(e.target.value)} />
-      {loading && !characters.length ? <Loading /> : <CharacterList characters={characters} />}
-    </InfiniteScroll>
+
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={() => getCharacters({ name: localName, offset: offset + limit * 1 })}
+        hasMore={hasMore}
+        loader={<Loading key={0} />}
+      >
+        {loading && !characters.length ? <Loading /> : <CharacterList characters={characters} />}
+      </InfiniteScroll>
+    </Fragment>
   );
 };
 
