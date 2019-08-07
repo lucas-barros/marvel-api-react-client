@@ -1,7 +1,7 @@
 # Marvel API React Client
 Project developed for Aceleradev React. It is a react client application that consumes the Marvel Rest API to display information about characters in the Marvel universe.
 
-Check out the [Demo](https://marvel-api-react-client.herokuapp.com/)!
+Check out the [Demo](https://marvel-react.netlify.com/)!
 
 ## Stack
 - React
